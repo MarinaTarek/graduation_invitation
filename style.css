@@ -383,27 +383,20 @@ input:focus-visible{
 }
 
 .title{
-
     font-family:'Cinzel',serif;
     line-height:1.15;
-    font-size:36px;
+    font-size:28px;
     padding:0 10px;
     background:linear-gradient(
-    90deg,
-    white,
-    var(--gold-bright),
-    white);
-
+        90deg,
+        white,
+        var(--gold-bright),
+        white);
     background-size:250% auto;
-
     background-clip:text;
-
     -webkit-background-clip:text;
-
     color:transparent;
-
     animation:congratsShimmer 4s linear infinite;
-
 }
 
 .name{
@@ -950,11 +943,8 @@ button:hover{
 =========================== */
 
 .gallery{
-
-    padding:40px 10% 120px;
-
+    padding:40px 10% 30px;
     text-align:center;
-
 }
 
 .gallery h1{
@@ -1042,11 +1032,8 @@ button:hover{
 =========================== */
 
 .guestbook{
-
-    padding:120px 10%;
-
+    padding:30px 10% 120px;
     text-align:center;
-
 }
 
 .guestbook h1{
@@ -1495,11 +1482,8 @@ body{
 }
 
 .title{
-
-    font-size:12vw;
-
+    font-size:clamp(20px,6vw,28px);
     width:100%;
-
 }
 
 .name{
