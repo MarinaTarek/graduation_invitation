@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Graduation Experience</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis (smooth scroll) -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- ================= Loader ================= -->
+
+    <div class="loader">
+
+        <div class="loader-content">
+
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 20 L92 38 L50 56 L8 38 Z" stroke="#d4af37" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M28 46 V66 C28 74 38 80 50 80 C62 80 72 74 72 66 V46" stroke="#d4af37" stroke-width="3"/>
+                <line x1="86" y1="38" x2="86" y2="62" stroke="#d4af37" stroke-width="3"/>
+                <circle cx="86" cy="66" r="4" fill="#d4af37"/>
+            </svg>
+
+            <h2>Graduation Experience</h2>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Intro ================= -->
+
+    <section class="intro">
+
+        <div class="particles"></div>
+
+        <div class="stars"></div>
+
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+
+        <!-- Signature element: the graduation cap traced as a constellation in the night sky -->
+        <svg class="constellation" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g class="const-lines">
+                <line x1="60" y1="130" x2="200" y2="60" />
+                <line x1="200" y1="60" x2="340" y2="130" />
+                <line x1="340" y1="130" x2="200" y2="200" />
+                <line x1="200" y1="200" x2="60" y2="130" />
+                <line x1="200" y1="60" x2="178" y2="150" />
+                <line x1="178" y1="150" x2="160" y2="210" />
+            </g>
+            <g class="const-stars">
+                <circle cx="60" cy="130" r="3.5" />
+                <circle cx="200" cy="60" r="4.5" />
+                <circle cx="340" cy="130" r="3.5" />
+                <circle cx="200" cy="200" r="3.5" />
+                <circle cx="178" cy="150" r="2.5" />
+                <circle cx="160" cy="210" r="4.5" />
+            </g>
+        </svg>
+
+        <div class="hero">
+
+            <p class="tag">
+
+                A NEW CHAPTER BEGINS
+
+            </p>
+
+            <h1 class="title">
+
+                Congratulations
+
+            </h1>
+
+            <h2 class="name">
+
+                Emma Carter
+
+            </h2>
+
+            <p class="degree">
+
+                Bachelor of Computer Science
+
+            </p>
+
+            <p class="university">
+
+                Harvard University
+
+            </p>
+
+            <div class="year">
+
+                CLASS OF 2026
+
+            </div>
+
+            <button id="start">
+
+                ✨ Enter Experience
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Countdown ================= -->
+
+    <section class="countdown">
+
+        <h1>Graduation Ceremony</h1>
+
+        <p>
+
+            Counting every second until the big day
+
+        </p>
+
+        <div class="timer">
+
+            <div>
+
+                <h2 id="days">00</h2>
+
+                <span>Days</span>
+
+            </div>
+
+            <div>
+
+                <h2 id="hours">00</h2>
+
+                <span>Hours</span>
+
+            </div>
+
+            <div>
+
+                <h2 id="minutes">00</h2>
+
+                <span>Minutes</span>
+
+            </div>
+
+            <div>
+
+                <h2 id="seconds">00</h2>
+
+                <span>Seconds</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Journey ================= -->
+
+    <section class="journey">
+
+        <h1>My Journey</h1>
+
+        <div class="timeline">
+
+            <div class="step">
+
+                <h2>2018</h2>
+
+                <p>
+
+                    Started dreaming of becoming a software engineer.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <h2>2022</h2>
+
+                <p>
+
+                    Started university and discovered my passion for technology.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <h2>2025</h2>
+
+                <p>
+
+                    Built graduation projects and completed internships.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <h2>2026</h2>
+
+                <p>
+
+                    Finally graduated and celebrated with family and friends.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- ================= Profile ================= -->
+
+    <section class="profile">
+
+        <div class="profile-photo">
+            <img src="assets/images/graduate.jpg" alt="Graduate portrait"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="img-placeholder" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+                Add graduate.jpg to assets/images
+            </div>
+        </div>
+
+        <div class="profile-content">
+
+            <h1>Achievements</h1>
+
+            <p>
+                Every challenge became a lesson.
+                Every lesson became a success.
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <h2 class="counter" data-target="24">0</h2>
+
+                    <span>Projects</span>
+
+                </div>
+
+                <div class="card">
+
+                    <h2 class="counter" data-target="8">0</h2>
+
+                    <span>Awards</span>
+
+                </div>
+
+                <div class="card">
+
+                    <h2 class="counter" data-target="3">0</h2>
+
+                    <span>Internships</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Gallery ================= -->
+
+    <section class="gallery">
+
+        <h1>Memories</h1>
+
+        <p>
+            Some beautiful moments from my university journey.
+        </p>
+
+        <div class="photos">
+
+            <div class="photo">
+                <img src="assets/images/gallery-1.jpg" alt="Memory 1"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="display:none">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    Add gallery-1.jpg
+                </div>
+            </div>
+
+            <div class="photo">
+                <img src="assets/images/gallery-2.jpg" alt="Memory 2"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="display:none">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    Add gallery-2.jpg
+                </div>
+            </div>
+
+            <div class="photo">
+                <img src="assets/images/gallery-3.jpg" alt="Memory 3"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="img-placeholder" style="display:none">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    Add gallery-3.jpg
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Guest Book ================= -->
+
+    <section class="guestbook">
+
+        <h1>Leave Your Wishes</h1>
+
+        <p>Write a beautiful message ❤️</p>
+
+        <div class="guestbook-form">
+
+            <input
+                type="text"
+                id="guestName"
+                placeholder="Your name..."
+                maxlength="40">
+
+            <textarea
+                id="wish"
+                placeholder="Write your message here..."></textarea>
+
+            <button class="seal-btn" onclick="saveWish()">
+
+                Send Wish
+
+            </button>
+
+        </div>
+
+        <div id="messages"></div>
+
+    </section>
+
+    <!-- ================= Music ================= -->
+
+    <audio id="music" loop>
+
+        <source src="assets/music/music.mp3" type="audio/mpeg">
+
+    </audio>
+
+    <button class="music-btn" id="musicBtn" aria-label="Toggle background music">
+
+        🎵
+
+    </button>
+
+   
+
+    <!-- ================= Footer ================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 Graduation Experience
+            <br>
+            Made with ❤️
+
+        </p>
+
+    </footer>
+
+    <!-- ================= Cursor ================= -->
+
+    <div class="cursor"></div>
+
+    <div class="cursor2"></div>
+
+    <!-- ================= Lightbox ================= -->
+
+    <div class="lightbox">
+
+        <img id="lightImage" alt="Enlarged memory">
+
+    </div>
+
+    <!-- JS -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

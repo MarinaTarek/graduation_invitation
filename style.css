@@ -1,0 +1,1580 @@
+/* ===========================
+   TOKENS
+   (unified dark parchment-under-night theme — every section now
+   shares the same dark base as the intro, instead of switching to
+   a light ivory background halfway down the page)
+=========================== */
+
+:root{
+
+    --ivory:#0C1024;
+
+    --ivory-panel:#161B36;
+
+    --ink:#F5EFDD;
+
+    --ink-soft:rgba(245,239,221,.72);
+
+    --gold:#C79A3D;
+
+    --gold-bright:#D4AF37;
+
+    --emerald:#2E7D5B;
+
+    --night:#050816;
+
+    --panel-tint:#1C2340;
+
+}
+
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:var(--ivory);
+
+    color:var(--ink);
+
+    font-family:'Poppins',sans-serif;
+
+    overflow-x:hidden;
+
+    cursor:none;
+
+}
+
+a{
+    color:inherit;
+}
+
+/* subtle gold-dust grain, reinforces the night-sky feel across the whole page */
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:1;
+
+    opacity:.5;
+
+    background-image:radial-gradient(rgba(212,175,55,.06) 1px,transparent 1px);
+
+    background-size:3px 3px;
+
+}
+
+/* visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible{
+
+    outline:2px solid var(--gold);
+
+    outline-offset:4px;
+
+}
+
+/* ===========================
+   SCROLL PROGRESS BAR
+=========================== */
+
+.scroll-progress{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:3px;
+
+    background:linear-gradient(90deg,var(--gold),var(--gold-bright));
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    z-index:10000;
+
+    box-shadow:0 0 10px rgba(212,175,55,.6);
+
+}
+
+/* ===========================
+   LOADER
+=========================== */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:var(--night);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    transition:opacity .6s ease;
+
+}
+
+.loader-content{
+
+    text-align:center;
+
+}
+
+.loader-content svg{
+
+    width:90px;
+
+    height:90px;
+
+    animation:float 2s infinite ease-in-out;
+
+}
+
+.loader h2{
+
+    margin-top:20px;
+
+    color:var(--gold-bright);
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:4px;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   INTRO
+=========================== */
+
+.intro{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top,
+    #22294f,
+    var(--night) 70%);
+
+    color:#fff;
+
+    padding:110px 20px 60px;
+
+}
+
+.particles{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+    radial-gradient(var(--gold-bright) 1px,transparent 1px);
+
+    background-size:45px 45px;
+
+    opacity:.18;
+
+}
+
+.stars{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+.stars::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:3px;
+
+    height:3px;
+
+    background:white;
+
+    box-shadow:
+    100px 150px white,
+    300px 450px white,
+    600px 220px white,
+    900px 350px white,
+    1200px 150px white,
+    1450px 420px white;
+
+    animation:twinkle 3s infinite;
+
+}
+
+/* streak used by the occasional shooting star (created on the fly in JS) */
+.shooting-star{
+
+    position:absolute;
+
+    width:70px;
+
+    height:2px;
+
+    background:linear-gradient(90deg,var(--gold-bright),transparent);
+
+    border-radius:2px;
+
+    pointer-events:none;
+
+    z-index:1;
+
+    filter:drop-shadow(0 0 4px var(--gold-bright));
+
+}
+
+.glow{
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:var(--gold-bright);
+
+    filter:blur(150px);
+
+    opacity:.18;
+
+}
+
+.glow1{
+
+    top:-100px;
+
+    left:-100px;
+
+}
+
+.glow2{
+
+    right:-100px;
+
+    bottom:-100px;
+
+}
+
+/* signature element: a constellation, drawn in gold, tracing the shape of a graduation cap in the night sky */
+.constellation{
+
+    position:absolute;
+
+    top:6%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(560px,72vw);
+
+    height:auto;
+
+    z-index:1;
+
+    opacity:.9;
+
+    pointer-events:none;
+
+}
+
+.constellation line{
+
+    stroke:var(--gold-bright);
+
+    stroke-width:1.4;
+
+    fill:none;
+
+    stroke-linecap:round;
+
+}
+
+.constellation circle{
+
+    fill:#f6e6b4;
+
+    filter:drop-shadow(0 0 6px var(--gold-bright));
+
+}
+
+/* the hero now sits centered as one flex column with the constellation
+   given room above it, instead of being pushed down by a fixed margin */
+.hero{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    margin-top:150px;
+
+}
+
+.tag{
+
+    color:var(--gold-bright);
+
+    letter-spacing:6px;
+
+    margin-bottom:20px;
+
+    font-size:13px;
+
+}
+
+.title{
+
+    font-family:'Cinzel',serif;
+
+    font-size:75px;
+
+    background:linear-gradient(
+    90deg,
+    white,
+    var(--gold-bright));
+
+    background-clip:text;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+.name{
+
+    color:var(--gold-bright);
+
+    margin-top:15px;
+
+    font-size:40px;
+
+    font-family:'Cinzel',serif;
+
+}
+
+.degree,
+.university{
+
+    margin-top:10px;
+
+    opacity:.8;
+
+}
+
+.year{
+
+    margin-top:25px;
+
+    color:var(--gold-bright);
+
+    letter-spacing:8px;
+
+    font-size:24px;
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+button{
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-top:35px;
+
+    padding:18px 45px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:var(--gold);
+
+    color:var(--night);
+
+    font-size:17px;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+#start{
+
+    background:var(--gold-bright);
+
+    color:var(--night);
+
+}
+
+button:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.05);
+
+    box-shadow:
+    0 0 35px
+    rgba(212,175,55,.35);
+
+}
+
+/* gold ripple burst from the start button on click (replaces the old flying-cap transition) */
+.start-burst{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    width:16px;
+
+    height:16px;
+
+    margin:-8px 0 0 -8px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,rgba(255,255,255,.9),rgba(212,175,55,.5) 60%,transparent 75%);
+
+    pointer-events:none;
+
+}
+
+/* small tap ripple used on every button for tactile touch feedback */
+.tap-ripple{
+
+    position:absolute;
+
+    width:10px;
+
+    height:10px;
+
+    margin:-5px 0 0 -5px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.55);
+
+    transform:scale(0);
+
+    animation:rippleOut .6s ease-out forwards;
+
+    pointer-events:none;
+
+}
+
+/* wax-seal style circular accent buttons used for the guestbook and closing celebration */
+.seal-btn{
+
+    position:relative;
+
+    border-radius:50%;
+
+    width:150px;
+
+    height:150px;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:radial-gradient(circle at 35% 30%,#e9c766,#a9791f 75%);
+
+    box-shadow:
+    inset 0 3px 6px rgba(255,255,255,.35),
+    inset 0 -6px 10px rgba(0,0,0,.35),
+    0 10px 25px rgba(0,0,0,.45);
+
+    font-family:'Cinzel',serif;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    color:#2c1f05;
+
+}
+
+.seal-btn:hover{
+
+    transform:translateY(-4px) scale(1.04);
+
+}
+
+/* ===========================
+   SHARED SECTION LOOK
+   (every section below now stays on the same dark ground as the intro)
+=========================== */
+
+.countdown,
+.journey,
+.profile,
+.gallery,
+.guestbook,
+.end{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ===========================
+   COUNTDOWN
+=========================== */
+
+.countdown{
+
+    padding:120px 10%;
+
+    text-align:center;
+
+}
+
+.countdown h1{
+
+    font-size:60px;
+
+    font-family:'Cinzel',serif;
+
+    color:var(--ink);
+
+}
+
+.countdown p{
+
+    margin:15px 0 60px;
+
+    color:var(--ink-soft);
+
+}
+
+.timer{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:30px;
+
+}
+
+.timer div{
+
+    width:170px;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:var(--ivory-panel);
+
+    border:1px solid rgba(212,175,55,.2);
+
+    transition:.4s;
+
+}
+
+.timer div:hover{
+
+    transform:translateY(-15px);
+
+}
+
+.timer h2{
+
+    color:var(--gold-bright);
+
+    font-size:50px;
+
+}
+
+.timer span{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:var(--ink-soft);
+
+}
+
+/* ===========================
+   JOURNEY
+=========================== */
+
+.journey{
+
+    padding:120px 10%;
+
+    text-align:center;
+
+}
+
+.journey h1{
+
+    font-size:60px;
+
+    font-family:'Cinzel',serif;
+
+    margin-bottom:70px;
+
+    color:var(--ink);
+
+}
+
+.timeline{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.step{
+
+    flex:1;
+
+    min-width:220px;
+
+    background:var(--ivory-panel);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    border-top:3px solid var(--gold-bright);
+
+    transition:.5s;
+
+}
+
+.step:hover{
+
+    transform:
+    translateY(-15px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.step h2{
+
+    color:var(--gold-bright);
+
+    margin-bottom:15px;
+
+    font-family:'Cinzel',serif;
+
+}
+
+.step p{
+
+    color:var(--ink-soft);
+
+    line-height:1.8;
+
+}
+/* ===========================
+   PROFILE
+=========================== */
+
+.profile{
+
+    padding:120px 10%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:80px;
+
+    flex-wrap:wrap;
+
+}
+
+.profile-photo{
+
+    width:380px;
+
+    height:460px;
+
+    border-radius:30px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+    transition:.5s;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:linear-gradient(160deg,var(--ivory-panel),var(--panel-tint));
+
+}
+
+.profile-photo:hover{
+
+    transform:scale(1.05);
+
+}
+
+.profile-photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+/* graceful placeholder shown automatically if a photo hasn't been added yet */
+.img-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    color:var(--gold-bright);
+
+    text-align:center;
+
+    padding:20px;
+
+    font-size:13px;
+
+    letter-spacing:.5px;
+
+}
+
+.img-placeholder svg{
+
+    width:42px;
+
+    height:42px;
+
+    opacity:.8;
+
+}
+
+.profile-content{
+
+    max-width:550px;
+
+}
+
+.profile-content h1{
+
+    font-size:60px;
+
+    font-family:'Cinzel',serif;
+
+    margin-bottom:20px;
+
+    color:var(--ink);
+
+}
+
+.profile-content p{
+
+    color:var(--ink-soft);
+
+    line-height:1.8;
+
+}
+
+.cards{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin-top:40px;
+
+}
+
+.card{
+
+    flex:1;
+
+    min-width:150px;
+
+    background:var(--ivory-panel);
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    border-bottom:3px solid var(--emerald);
+
+}
+
+.card:hover{
+
+    transform:
+    translateY(-15px)
+    rotateY(8deg);
+
+}
+
+.card h2{
+
+    color:var(--gold-bright);
+
+    font-size:50px;
+
+}
+
+.card span{
+
+    display:block;
+
+    margin-top:12px;
+
+    color:var(--ink-soft);
+
+}
+
+/* ===========================
+   GALLERY
+=========================== */
+
+.gallery{
+
+    padding:120px 10%;
+
+    text-align:center;
+
+}
+
+.gallery h1{
+
+    font-size:60px;
+
+    font-family:'Cinzel',serif;
+
+    color:var(--ink);
+
+}
+
+.gallery p{
+
+    color:var(--ink-soft);
+
+    margin:15px 0 60px;
+
+}
+
+.photos{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:35px;
+
+    flex-wrap:wrap;
+
+}
+
+.photo{
+
+    width:320px;
+
+    height:420px;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transform-style:preserve-3d;
+
+    transition:.5s;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+
+    background:linear-gradient(160deg,var(--ivory-panel),var(--panel-tint));
+
+}
+
+.photo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.7s;
+
+    display:block;
+
+}
+
+.photo:hover{
+
+    transform:
+    translateY(-15px)
+    rotateY(10deg);
+
+}
+
+.photo:hover img{
+
+    transform:scale(1.15);
+
+}
+
+/* ===========================
+   GUEST BOOK
+=========================== */
+
+.guestbook{
+
+    padding:120px 10%;
+
+    text-align:center;
+
+}
+
+.guestbook h1{
+
+    font-size:55px;
+
+    font-family:'Cinzel',serif;
+
+    color:var(--ink);
+
+}
+
+.guestbook p{
+
+    color:var(--ink-soft);
+
+    margin:20px 0;
+
+}
+
+/* the name field + textarea + send button now sit together as one
+   centered column, so the whole form (and the send button with it)
+   stays perfectly centered instead of drifting left with inline elements */
+.guestbook-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+    max-width:700px;
+
+    margin:0 auto;
+
+}
+
+#guestName{
+
+    width:80%;
+
+    max-width:700px;
+
+    background:var(--ivory-panel);
+
+    color:var(--ink);
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:50px;
+
+    padding:16px 26px;
+
+    font-size:16px;
+
+    font-family:inherit;
+
+    outline:none;
+
+    text-align:center;
+
+}
+
+#guestName::placeholder{
+
+    color:var(--ink-soft);
+
+}
+
+textarea{
+
+    width:80%;
+
+    max-width:700px;
+
+    height:180px;
+
+    background:var(--ivory-panel);
+
+    color:var(--ink);
+
+    border:1px solid rgba(212,175,55,.25);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    font-size:16px;
+
+    font-family:inherit;
+
+    resize:none;
+
+    outline:none;
+
+}
+
+textarea::placeholder{
+
+    color:var(--ink-soft);
+
+}
+
+#messages{
+
+    margin-top:40px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+    max-width:700px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+.message{
+
+    background:var(--ivory-panel);
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:left;
+
+    border-left:3px solid var(--gold-bright);
+
+    color:var(--ink);
+
+}
+
+.message strong{
+
+    color:var(--gold-bright);
+
+}
+
+/* ===========================
+   END
+=========================== */
+
+.end{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    background:linear-gradient(180deg,var(--ivory),var(--night));
+
+}
+
+.end h1{
+
+    font-size:70px;
+
+    font-family:'Cinzel',serif;
+
+    color:var(--ink);
+
+}
+
+.end p{
+
+    margin:20px 0;
+
+    color:var(--ink-soft);
+
+    max-width:480px;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    padding:35px;
+
+    background:var(--night);
+
+    text-align:center;
+
+    color:rgba(255,255,255,.6);
+
+    font-size:14px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ===========================
+   MUSIC BUTTON
+=========================== */
+
+.music-btn{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    margin:0;
+
+    z-index:500;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+
+    background:var(--gold-bright);
+
+    color:var(--night);
+
+}
+
+/* ===========================
+   CURSOR
+=========================== */
+
+.cursor{
+
+    position:fixed;
+
+    width:15px;
+
+    height:15px;
+
+    border-radius:50%;
+
+    background:var(--gold-bright);
+
+    pointer-events:none;
+
+    z-index:99999;
+
+    mix-blend-mode:difference;
+
+}
+
+.cursor2{
+
+    position:fixed;
+
+    width:40px;
+
+    height:40px;
+
+    border:2px solid var(--gold-bright);
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:99998;
+
+    mix-blend-mode:difference;
+
+}
+
+/* ===========================
+   LIGHTBOX
+=========================== */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(5,8,22,.92);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    cursor:pointer;
+
+}
+
+.lightbox img{
+
+    max-width:80%;
+
+    max-height:80%;
+
+    border-radius:20px;
+
+}
+
+/* ===========================
+   SCROLL EFFECT
+=========================== */
+
+.countdown,
+.journey,
+.profile,
+.gallery,
+.guestbook,
+.end{
+
+    opacity:0;
+
+    transform:translateY(80px);
+
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+
+        opacity:.3;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%,100%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+}
+
+@keyframes rippleOut{
+
+    to{
+
+        transform:scale(6);
+
+        opacity:0;
+
+    }
+
+}
+
+.music-btn{
+
+    animation:pulse 2s infinite;
+
+}
+
+/* respect people who've asked for reduced motion */
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    .loader-content svg,
+    .music-btn{
+
+        animation:none;
+
+    }
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+body{
+
+    cursor:auto;
+
+}
+
+.cursor,
+.cursor2{
+
+    display:none;
+
+}
+
+.title{
+
+    font-size:48px;
+
+}
+
+.name{
+
+    font-size:30px;
+
+}
+
+.countdown h1,
+.journey h1,
+.gallery h1,
+.profile-content h1,
+.guestbook h1,
+.end h1{
+
+    font-size:42px;
+
+}
+
+.timeline{
+
+    flex-direction:column;
+
+}
+
+.profile{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.profile-photo{
+
+    width:90%;
+
+    max-width:380px;
+
+}
+
+.photos{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.photo{
+
+    width:90%;
+
+    max-width:340px;
+
+}
+
+.cards{
+
+    justify-content:center;
+
+}
+
+#guestName,
+textarea{
+
+    width:95%;
+
+}
+
+.constellation{
+
+    width:88vw;
+
+    top:2%;
+
+}
+
+.hero{
+
+    margin-top:170px;
+
+}
+
+}
