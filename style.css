@@ -942,10 +942,11 @@ button:hover{
    GALLERY
 =========================== */
 .gallery{
-padding:40px 10% 0;
+    padding:40px 10% 20px;
     text-align:center;
+    min-height:auto;
+    height:auto;
 }
-
 .gallery h1{
 
     font-size:60px;
@@ -977,53 +978,33 @@ padding:40px 10% 0;
 }
 
 .photo{
-
     width:320px;
-
     height:420px;
-
     overflow:hidden;
-
     border-radius:30px;
-
+    position:relative;
     cursor:pointer;
-
-    transform-style:preserve-3d;
-
-    transition:.5s;
-
     box-shadow:0 20px 40px rgba(0,0,0,.45);
-
-    background:linear-gradient(160deg,var(--ivory-panel),var(--panel-tint));
-
+    border:2px solid rgba(212,175,55,.25);
+    transition:.5s;
+    background:#161B36;
 }
 
 .photo img{
-
     width:100%;
-
     height:100%;
-
     object-fit:cover;
-
-    transition:.7s;
-
-    display:block;
-
+    transition:transform .6s ease;
 }
 
 .photo:hover{
-
-    transform:
-    translateY(-15px)
-    rotateY(10deg);
-
+    transform:translateY(-10px) scale(1.03);
+    border-color:#D4AF37;
+    box-shadow:0 0 35px rgba(212,175,55,.45);
 }
 
 .photo:hover img{
-
-    transform:scale(1.15);
-
+    transform:scale(1.1);
 }
 
 /* ===========================
@@ -1567,4 +1548,18 @@ textarea{
 
 }
 
+}
+#textCanvas{
+    position:absolute;
+    top:120px;
+    left:50%;
+    transform:translateX(-50%);
+    width:900px;
+    height:180px;
+    pointer-events:none;
+    z-index:5;
+}
+
+#realTitle{
+    opacity:0;
 }

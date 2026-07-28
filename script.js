@@ -1081,3 +1081,79 @@ function startMusic() {
 
 document.addEventListener("click", startMusic, { once: true });
 document.addEventListener("touchstart", startMusic, { once: true });
+const canvas = document.getElementById("textCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 900;
+canvas.height = 180;
+
+ctx.font = "700 90px Cinzel";
+ctx.fillStyle = "#fff";
+ctx.textAlign = "center";
+
+ctx.fillText("Congratulations",450,110);
+
+const pixels = ctx.getImageData(0,0,900,180).data;
+
+ctx.clearRect(0,0,900,180);
+
+let particles=[];
+
+for(let y=0;y<180;y+=4){
+
+    for(let x=0;x<900;x+=4){
+
+        const index=(y*900+x)*4;
+
+        if(pixels[index+3]>150){
+
+            particles.push({
+
+                x:Math.random()*900,
+
+                y:Math.random()*180,
+
+                tx:x,
+
+                ty:y,
+
+                size:2,
+
+                speed:0.06
+
+            });
+
+        }
+    }
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,900,180);
+
+    particles.forEach(p=>{
+
+        p.x+=(p.tx-p.x)*p.speed;
+        p.y+=(p.ty-p.y)*p.speed;
+
+        ctx.beginPath();
+        ctx.fillStyle="#D4AF37";
+        ctx.shadowBlur=8;
+        ctx.shadowColor="#FFD700";
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(animate);
+
+}
+
+animate();
+
+setTimeout(()=>{
+
+    document.getElementById("realTitle").style.opacity=1;
+    canvas.style.opacity=0;
+
+},4000);
