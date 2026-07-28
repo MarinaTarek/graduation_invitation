@@ -385,19 +385,24 @@ input:focus-visible{
 .title{
 
     font-family:'Cinzel',serif;
-    line-height:1.2;
+    line-height:1.15;
     font-size:36px;
     padding:0 10px;
     background:linear-gradient(
     90deg,
     white,
-    var(--gold-bright));
+    var(--gold-bright),
+    white);
+
+    background-size:250% auto;
 
     background-clip:text;
 
     -webkit-background-clip:text;
 
     color:transparent;
+
+    animation:congratsShimmer 4s linear infinite;
 
 }
 
@@ -765,7 +770,7 @@ button:hover{
 
 .profile{
 
-    padding:120px 10%;
+    padding:120px 10% 40px;
 
     display:flex;
 
@@ -890,7 +895,7 @@ button:hover{
 
     flex-wrap:wrap;
 
-    margin-top:40px;
+    margin-top:20px;
 
 }
 
@@ -946,7 +951,7 @@ button:hover{
 
 .gallery{
 
-    padding:120px 10%;
+    padding:40px 10% 120px;
 
     text-align:center;
 
@@ -1491,7 +1496,9 @@ body{
 
 .title{
 
-    font-size:48px;
+    font-size:12vw;
+
+    width:100%;
 
 }
 
