@@ -93,73 +93,22 @@ if(progressBar){
 let intro = gsap.timeline();
 
 intro
-
-.from(".tag",{
-
+.from(".hero",{
     opacity:0,
-
-    y:50,
-
-    duration:.6
-
+    y:40,
+    duration:1,
+    ease:"power3.out"
 })
-
 .from(".title",{
-
     opacity:0,
-
-    scale:.5,
-
+    filter:"blur(10px)",
     duration:.8
-
-})
-
-.from(".name",{
-
-    opacity:0,
-
-    x:-150,
-
-    duration:.7
-
-})
-
-.from(".degree",{
-
-    opacity:0,
-
-    y:20
-
-})
-
-.from(".university",{
-
-    opacity:0,
-
-    y:20
-
-})
-
-.from(".year",{
-
-    opacity:0,
-
-    letterSpacing:25,
-
-    duration:.7
-
-})
-
+},"-=0.5")
 .from("#start",{
-
     opacity:0,
-
-    scale:0,
-
-    duration:.6
-
-});
-
+    y:20,
+    duration:.5
+},"-=0.3");
 // =========================================
 // SIGNATURE: CONSTELLATION DRAW-IN
 // =========================================

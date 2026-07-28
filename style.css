@@ -384,19 +384,28 @@ input:focus-visible{
 
 .title{
     font-family:'Cinzel',serif;
-    line-height:1.15;
-    font-size:28px;
-    padding:0 10px;
-    background:linear-gradient(
-        90deg,
-        white,
-        var(--gold-bright),
-        white);
-    background-size:250% auto;
-    background-clip:text;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:congratsShimmer 4s linear infinite;
+    font-size:clamp(32px,7vw,70px);
+    line-height:1.2;
+    color:#fff;
+    background:none;
+    -webkit-text-fill-color:#fff;
+    animation:fadeGlow 3s ease-in-out infinite;
+    text-shadow:
+        0 0 10px rgba(212,175,55,.4),
+        0 0 25px rgba(212,175,55,.25);
+}
+
+@keyframes fadeGlow{
+    0%,100%{
+        transform:translateY(0);
+        text-shadow:0 0 10px rgba(212,175,55,.35);
+    }
+    50%{
+        transform:translateY(-4px);
+        text-shadow:
+            0 0 18px rgba(212,175,55,.8),
+            0 0 40px rgba(212,175,55,.45);
+    }
 }
 
 .name{
@@ -469,7 +478,9 @@ button{
 #start{
 
     background:var(--gold-bright);
+ padding:16px 38px;
 
+    font-size:16px;
     color:var(--night);
 
 }
@@ -757,186 +768,7 @@ button:hover{
     line-height:1.8;
 
 }
-/* ===========================
-   PROFILE
-=========================== */
 
-.profile{
-
-    padding:120px 10% 40px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:80px;
-
-    flex-wrap:wrap;
-
-}
-
-.profile-photo{
-
-    width:380px;
-
-    height:460px;
-
-    border-radius:30px;
-
-    box-shadow:0 20px 60px rgba(0,0,0,.45);
-
-    transition:.5s;
-
-    overflow:hidden;
-
-    position:relative;
-
-    background:linear-gradient(160deg,var(--ivory-panel),var(--panel-tint));
-
-}
-
-.profile-photo:hover{
-
-    transform:scale(1.05);
-
-}
-
-.profile-photo img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-}
-
-/* graceful placeholder shown automatically if a photo hasn't been added yet */
-.img-placeholder{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    color:var(--gold-bright);
-
-    text-align:center;
-
-    padding:20px;
-
-    font-size:13px;
-
-    letter-spacing:.5px;
-
-}
-
-.img-placeholder svg{
-
-    width:42px;
-
-    height:42px;
-
-    opacity:.8;
-
-}
-
-.profile-content{
-
-    max-width:550px;
-
-}
-
-.profile-content h1{
-
-    font-size:60px;
-
-    font-family:'Cinzel',serif;
-
-    margin-bottom:20px;
-
-    color:var(--ink);
-
-}
-
-.profile-content p{
-
-    color:var(--ink-soft);
-
-    line-height:1.8;
-
-}
-
-.cards{
-
-    display:flex;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    margin-top:20px;
-
-}
-
-.card{
-
-    flex:1;
-
-    min-width:150px;
-
-    background:var(--ivory-panel);
-
-    padding:30px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    transition:.4s;
-
-    border-bottom:3px solid var(--emerald);
-
-}
-
-.card:hover{
-
-    transform:
-    translateY(-15px)
-    rotateY(8deg);
-
-}
-
-.card h2{
-
-    color:var(--gold-bright);
-
-    font-size:50px;
-
-}
-
-.card span{
-
-    display:block;
-
-    margin-top:12px;
-
-    color:var(--ink-soft);
-
-}
 
 /* ===========================
    GALLERY
@@ -1535,19 +1367,22 @@ textarea{
 }
 
 .constellation{
-
-    width:88vw;
-
-    top:2%;
-
+    width:min(380px,82vw);
+    top:4%;
 }
 
 .hero{
+    margin-top:70px;
+}
+@media(max-width:900px){
 
-    margin-top:120px;
+.hero{
+
+    margin-top:90px;
 
 }
 
+}
 }
 #textCanvas{
     position:absolute;
