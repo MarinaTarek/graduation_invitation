@@ -941,9 +941,8 @@ button:hover{
 /* ===========================
    GALLERY
 =========================== */
-
 .gallery{
-    padding:40px 10% 30px;
+padding:40px 10% 0;
     text-align:center;
 }
 
@@ -1032,7 +1031,7 @@ button:hover{
 =========================== */
 
 .guestbook{
-    padding:30px 10% 120px;
+padding:0 10% 120px;
     text-align:center;
 }
 
